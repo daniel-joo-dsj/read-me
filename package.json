@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "@fastify/env": "^5.0.3",
+    "@fastify/mongodb": "^9.0.2",
+    "@fastify/multipart": "^9.3.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.2",
+    "fastify-plugin": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "name": "read-me",
+  "version": "1.0.0",
+  "description": "ReadMe is an AI-powered chatbot localized to your own knowledge base.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json",
+    "start": "node ./src/app/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel-joo-dsj/read-me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniel-joo-dsj/read-me/issues"
+  },
+  "homepage": "https://github.com/daniel-joo-dsj/read-me#readme",
+  "type": "module"
+}
