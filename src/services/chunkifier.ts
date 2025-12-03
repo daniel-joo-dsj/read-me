@@ -16,19 +16,13 @@ export class Chunkifier {
         return docs!
     }
 
-    async #chunk(document : Document<Record<string, any>>) : Promise<string[]> {
+    async #chunk(documents : Document<Record<string, any>>[]) : Promise<Document[]> {
         // TODO: semantic chunking
-        return await this.textSplitter.splitText(document.pageContent)
+        return await this.textSplitter.splitDocuments(documents)
     }
 
-    async chunkify() : Promise<string[]> {
+    async chunkify() : Promise<Document[]> {
         const documents = await this.#readPDF()
-        const chunks : string[] = []
-
-        for (const document of documents) {
-            const content = await this.#chunk(document);
-            chunks.push(...content)
-        }
-        return chunks
+        return await this.#chunk(documents)
     }
 }
