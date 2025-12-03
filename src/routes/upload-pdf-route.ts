@@ -2,7 +2,6 @@ import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import * as fs from 'fs';
 
 async function uploadPDF (fastify: FastifyInstance, options: FastifyPluginOptions) {
-
     fastify.post('/upload-pdf', async (request, reply) => {
         try {
             const data = await request.file();
