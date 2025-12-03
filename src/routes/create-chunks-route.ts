@@ -2,6 +2,7 @@ import { Chunkifier } from '../services/chunkifier.js'
 import fs from 'fs/promises';
 import type { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify'
 import type { FilenameParams } from '../types/filename.js';
+import { documentsToStrings } from '../utils/document-to-text.js';
 
 async function createChunks (fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.get('/create-chunks/:filename', async (request : FastifyRequest<{Params : FilenameParams}>, reply: FastifyReply) => {
@@ -17,7 +18,8 @@ async function createChunks (fastify: FastifyInstance, options: FastifyPluginOpt
             const filepath = options.path + request.params.filename
             const chunkifier = new Chunkifier(filepath)
             const chunks = await chunkifier.chunkify()
-            reply.send({ message: 'Created chunks successfully', chunks })
+            const texts = documentsToStrings(chunks)
+            reply.send({ message: 'Created chunks successfully', texts })
         } catch (err) {
             console.error('Error occurred while creating chunks ', err)
         }
