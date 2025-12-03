@@ -1,4 +1,4 @@
-import type { FastifyInstance, FastifyRequest, FastifyPluginOptions, FastifyReply } from 'fastify'
+import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import * as fs from 'fs';
 
 async function uploadPDF (fastify: FastifyInstance, options: FastifyPluginOptions) {
