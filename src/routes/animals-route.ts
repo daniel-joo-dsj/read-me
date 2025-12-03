@@ -5,7 +5,7 @@ import type { AnimalParams } from '../types/animal.js'
 
 async function animals (fastify: FastifyInstance, options: RouteShorthandOptions) {
   const database: Db = fastify.mongo.db!
-  const collection = database.collection('test_collection') //  TODOl\: pass in colleciton as parameter
+  const collection = database.collection('test_collection') //  TODO: pass in colleciton as parameter
   
   const animalBodyJsonSchema = {
     type: 'object',
