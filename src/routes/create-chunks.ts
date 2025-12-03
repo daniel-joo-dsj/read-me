@@ -4,6 +4,7 @@ import type { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyReques
 import type { FilenameParams } from '../types/filename.js';
 import { documentsToStrings } from '../utils/document-to-text.js';
 
+// TODO: Shouldn't be an endpoint. Only for testing purposes
 async function createChunks (fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.get('/create-chunks/:filename', async (request : FastifyRequest<{Params : FilenameParams}>, reply: FastifyReply) => {
         try {
