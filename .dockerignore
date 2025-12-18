@@ -1,0 +1,25 @@
+# Secrets
+.env
+.env.*
+
+# Node
+node_modules
+*.log
+dist
+
+# Typescript
+*.ts
+*.ts.*
+
+# Git + VS Code
+.git
+.gitignore
+.DS_Store
+.vscode
+.idea
+
+# Tests
+coverage
+tests
+test
+__tests__

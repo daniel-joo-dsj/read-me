@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: read-me
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+    command: node dist/app/app.js
+    restart: unless-stopped
