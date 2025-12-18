@@ -1,7 +1,6 @@
 # Secrets
 .env
 .env.*
-*.ts.*
 
 # Node
 node_modules
