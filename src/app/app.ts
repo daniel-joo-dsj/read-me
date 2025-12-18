@@ -1,9 +1,6 @@
 import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import fastifyMultipart from '@fastify/multipart'
-import mongoDBConnector from '../services/mongo-db-connector.js'
-import animals from '../routes/animals.js'
-import helloWorld from '../routes/hello-world.js'
 import uploadPDF from '../routes/upload-pdf.js'
 import createChunks from '../routes/create-chunks.js'
 import * as dotenv from 'dotenv'
@@ -16,11 +13,6 @@ const server: fastify.FastifyInstance<Server, IncomingMessage, ServerResponse> =
 })
 
 
-server.register(mongoDBConnector, {
-  'url': process.env.MONGO_DB_URL
-})
-server.register(helloWorld)
-server.register(animals)
 server.register(fastifyMultipart)
 server.register(uploadPDF, {
   'filepath': process.env.UPLOAD_PATH
