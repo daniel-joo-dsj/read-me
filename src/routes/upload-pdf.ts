@@ -1,5 +1,5 @@
 import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import * as fs from 'fs';
+import * as fs from 'fs/promises';
 
 async function uploadPDF (fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.post('/upload-pdf', async (request, reply) => {
@@ -18,7 +18,7 @@ async function uploadPDF (fastify: FastifyInstance, options: FastifyPluginOption
 
             const filename = data.filename;
 
-            await fs.promises.writeFile(options.filepath + filename, await data.toBuffer()); // Save file to directory
+            await fs.writeFile(options.filepath + filename, await data.toBuffer()); // Save file to directory
             reply.send({ message: 'PDF uploaded successfully', filename })
         } catch (error) {
             fastify.log.error(error);

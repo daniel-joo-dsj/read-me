@@ -1,7 +1,7 @@
 import { Chunkifier } from '../services/chunkifier.js'
 import fs from 'fs/promises';
 import type { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify'
-import type { FilenameParams } from '../types/filename.js';
+import type { FilenameParams } from '../types/interfaces.js';
 import { documentsToStrings } from '../utils/document-to-text.js';
 
 // TODO: Shouldn't be an endpoint. Only for testing purposes
