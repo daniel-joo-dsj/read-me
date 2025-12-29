@@ -14,7 +14,7 @@ services:
       - db
   db:
     image: pgvector/pgvector:pg17
-    container_name: postgres
+    container_name: read-me-db
     environment:
       POSTGRES_DB: "${POSTGRES_DB}"
       POSTGRES_USER: "${POSTGRES_USER}"
