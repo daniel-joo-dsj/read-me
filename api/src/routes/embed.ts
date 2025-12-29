@@ -1,12 +1,12 @@
 import { Chunkifier } from '../services/chunkifier.js'
+import { Embedder } from '../services/embedder.js'
 import fs from 'fs/promises';
 import type { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify'
 import type { FilenameParams } from '../types/interfaces.js';
 import { documentsToStrings } from '../utils/document-to-text.js';
 
-// TODO: Shouldn't be an endpoint. Only for testing purposes
-async function createChunks (fastify: FastifyInstance, options: FastifyPluginOptions) {
-    fastify.get('/create-chunks/:filename', async (request : FastifyRequest<{Params : FilenameParams}>, reply: FastifyReply) => {
+async function embed (fastify: FastifyInstance, options: FastifyPluginOptions) {
+    fastify.get('/embed/:filename', async (request : FastifyRequest<{Params : FilenameParams}>, reply: FastifyReply) => {
         try {
             const files = await fs.readdir(options.path)
 
@@ -21,10 +21,14 @@ async function createChunks (fastify: FastifyInstance, options: FastifyPluginOpt
             const chunks = await chunkifier.chunkify()
             const texts = documentsToStrings(chunks)
             reply.send({ message: 'Created chunks successfully', texts })
+
+            // Embed chunks
+            const embedder = new Embedder();
+            await embedder.embedChunks(chunks);
         } catch (err) {
-            console.error('Error occurred while creating chunks ', err)
+            console.error('Error occurred while embedding chunks ', err)
         }
     })
 }
 
-export default createChunks;
+export default embed;

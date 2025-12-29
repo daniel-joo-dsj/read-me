@@ -3,7 +3,8 @@ CREATE EXTENSION IF NOT EXISTS vector;
 CREATE TABLE embeddings (
   id UUID PRIMARY KEY,
   content TEXT NOT NULL,
-  embedding VECTOR(1536) NOT NULL
+  embedding VECTOR(384) NOT NULL,
+  metadata TEXT
 );
 
 CREATE INDEX ON embeddings

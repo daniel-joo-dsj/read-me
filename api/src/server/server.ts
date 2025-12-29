@@ -3,8 +3,8 @@ import { Server, IncomingMessage, ServerResponse } from 'http'
 import fastifyMultipart from '@fastify/multipart'
 import { initialize } from '../services/initialize.js'
 import type { InitializationProps } from '../types/interfaces.js'
-import uploadPDF from '../routes/upload-pdf.js'
-import createChunks from '../routes/create-chunks.js'
+import upload from '../routes/upload.js'
+import embed from '../routes/embed.js'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
@@ -23,10 +23,10 @@ initialize(initializationProps)
 
 // Register endpoints
 server.register(fastifyMultipart)
-server.register(uploadPDF, {
+server.register(upload, {
   'filepath': process.env.UPLOAD_PATH
 })
-server.register(createChunks, {
+server.register(embed, {
   'path': process.env.UPLOAD_PATH
 })
 
