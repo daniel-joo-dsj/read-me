@@ -1,5 +1,5 @@
 services:
-  api:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,5 +8,5 @@ services:
       - .env
     ports:
       - "${PORT}:${PORT}"
-    command: node dist/app/app.js
+    command: node dist/server/server.js
     restart: unless-stopped
