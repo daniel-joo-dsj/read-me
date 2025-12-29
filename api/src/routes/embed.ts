@@ -19,12 +19,11 @@ async function embed (fastify: FastifyInstance, options: FastifyPluginOptions) {
             const filepath = options.path + request.params.filename
             const chunkifier = new Chunkifier(filepath)
             const chunks = await chunkifier.chunkify()
-            const texts = documentsToStrings(chunks)
-            reply.send({ message: 'Created chunks successfully', texts })
 
             // Embed chunks
             const embedder = new Embedder();
             await embedder.embedChunks(chunks);
+            reply.send({ message: 'Embedded chunks successfully'})
         } catch (err) {
             console.error('Error occurred while embedding chunks ', err)
         }
