@@ -151,4 +151,4 @@ dist
 
 
 ### App ###
-api/src/uploads/*
+uploads/
