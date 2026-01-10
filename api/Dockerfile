@@ -14,4 +14,4 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 COPY --from=backend-build /server/dist ./dist
 EXPOSE 3000
-CMD ["node", "dist/server/server.js"]
+CMD ["node", "dist/infrastructure/fastify/server.js"]
