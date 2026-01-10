@@ -1,8 +1,8 @@
-import { Chunkifier } from '../services/chunkifier.js'
-import { Embedder } from '../services/embedder.js'
+import { Chunkifier } from '../../../application/chunkifier.js'
+import { Embedder } from '../../../application/embedder.js'
 import fs from 'fs/promises';
 import type { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify'
-import type { FilenameParams } from '../types/interfaces.js';
+import type { FilenameParams } from '../../../types/interfaces.js';
 
 async function embed (fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.get('/embed/:filename', async (request : FastifyRequest<{Params : FilenameParams}>, reply: FastifyReply) => {

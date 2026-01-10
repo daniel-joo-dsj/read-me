@@ -8,3 +8,10 @@ export interface InitializationProps {
 export interface FilenameParams {
     filename: string;
 }
+
+export interface File {
+    buffer: Buffer
+    filename: string
+    mimetype: string
+    size: number
+}
