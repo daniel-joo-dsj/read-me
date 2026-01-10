@@ -5,7 +5,7 @@ import { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
 import type { DistanceStrategy } from "@langchain/community/vectorstores/pgvector";
 import { v4 as uuidv4 } from "uuid";
 
- 
+ //todo refactor separate business logic
 export class Embedder {
     embeddings: HuggingFaceInferenceEmbeddings
     vectorStore: Promise<PGVectorStore>

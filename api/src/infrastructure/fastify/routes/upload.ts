@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import { uploadFile } from '../../../application/uploadFile.js';
-import { adaptFile } from '../adapters/fileAdapter.js';
+import { uploadFile } from '@application/upload-file.js';
+import { adaptFile } from '../adapters/file-adapter.js';
 
 async function upload (fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.post('/upload', async (request, reply) => {
