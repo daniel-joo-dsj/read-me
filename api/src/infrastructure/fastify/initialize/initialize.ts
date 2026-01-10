@@ -1,6 +1,6 @@
 import * as fs from 'fs/promises';
 import type { FastifyInstance } from 'fastify'
-import type { InitializationProps } from '../../types/interfaces.js'
+import type { InitializationProps } from './initialization-props.js'
 
 
 async function createUploadDirectory(fastify: FastifyInstance, dirPath: string) {

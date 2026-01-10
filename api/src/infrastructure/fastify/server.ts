@@ -1,11 +1,11 @@
 import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import fastifyMultipart from '@fastify/multipart'
-import { initialize } from './initialize.js'
-import type { InitializationProps } from '../../types/interfaces.js'
+import { initialize } from './initialize/initialize.js'
+import type { InitializationProps } from './initialize/initialization-props.js'
 import upload from './routes/upload.js'
 import embed from './routes/embed.js'
-import { errorHandler } from './errorHandler.js'
+import { errorHandler } from './error-handler.js'
 import * as dotenv from 'dotenv'
 
 dotenv.config()

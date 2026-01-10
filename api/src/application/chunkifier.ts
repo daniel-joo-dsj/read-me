@@ -1,7 +1,8 @@
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
 import { Document } from '@langchain/core/documents';
 import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf';
- 
+
+ //todo refactor; separate business logic
 export class Chunkifier {
     loader : PDFLoader;
     textSplitter : RecursiveCharacterTextSplitter
