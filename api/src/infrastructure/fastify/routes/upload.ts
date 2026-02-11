@@ -1,15 +1,12 @@
 import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import { uploadFile } from '@application/upload-file.js';
-import { adaptFile } from '../adapters/file-adapter.js';
+
 
 async function upload (fastify: FastifyInstance, options: FastifyPluginOptions) {
-    fastify.post('/upload', async (request, reply) => {
-        // Adapt Fastify Request file to one readable to domain
-        const applicationFile = await adaptFile(request)
+    const { fileAdapter } = options;
 
-        // Upload file
-        await uploadFile(options.filepath, fastify.log, applicationFile)
-        reply.send({ message: 'PDF uploaded successfully'})
+    fastify.post('/upload', async (request, reply) => {
+       await fileAdapter.upload(request)
+       return reply.status(201).send('File uploaded successfully.')
     })
 }
 

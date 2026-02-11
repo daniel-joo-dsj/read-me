@@ -1,6 +1,6 @@
 import type { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
 import { DomainError } from '@domain/errors/domain-error.js'
-import { InfrastructureError } from '@application/errors/infrastructure-error.js'
+import { InfrastructureError } from '@infrastructure/errors/infrastructure-error.js'
 
 export function errorHandler(
   error: FastifyError,
