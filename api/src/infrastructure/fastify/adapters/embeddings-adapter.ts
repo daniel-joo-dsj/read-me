@@ -6,15 +6,18 @@ import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
 import { embedFile } from '@application/embed-file.js';
 import type { PGVectorStore } from '@langchain/community/vectorstores/pgvector';
+import type { Logger } from '@application/logger.js';
 
 
 export class EmbeddingsAdapter {
     uploadPath : string;
-    vectorStore: PGVectorStore
+    vectorStore: PGVectorStore;
+    logger: Logger;
 
-    constructor(uploadPath: string, vectorStore: PGVectorStore) {
+    constructor(uploadPath: string, vectorStore: PGVectorStore, logger: Logger) {
         this.uploadPath = uploadPath;
         this.vectorStore = vectorStore;
+        this.logger = logger;
     }
     async #createPDFLoader(request: FastifyRequest<{Params : FilenameParams}>) {
         const files = await fs.readdir(this.uploadPath)
@@ -35,7 +38,7 @@ export class EmbeddingsAdapter {
     async embed(request: FastifyRequest<{Params : FilenameParams}>) {
         const loader = await this.#createPDFLoader(request);
         const textSplitter = await this.#createTextSplitter();
-        await embedFile(request.log, loader, textSplitter, this.vectorStore)
+        await embedFile(this.logger, loader, textSplitter, this.vectorStore)
     }
 }
 

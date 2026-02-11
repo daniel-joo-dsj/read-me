@@ -6,10 +6,12 @@ import type { Logger } from '@application/logger.js';
 
 
 export class FileAdapter {
-    uploadPath: string
+    uploadPath: string;
+    logger: Logger;
 
-    constructor(uploadPath: string) {
-        this.uploadPath = uploadPath
+    constructor(uploadPath: string, logger: Logger) {
+        this.uploadPath = uploadPath;
+        this.logger = logger;
     }
     async #adaptFile(request: FastifyRequest) : Promise<File> {
         const file = await request.file();
@@ -25,8 +27,8 @@ export class FileAdapter {
             size: buffer.length
         } as File
     }
-    async upload(request: FastifyRequest, logger: Logger ) {
+    async upload(request: FastifyRequest ) {
         const file = await this.#adaptFile(request);
-        await uploadFile(this.uploadPath, logger, file);
+        await uploadFile(this.uploadPath, this.logger, file);
     }   
 }

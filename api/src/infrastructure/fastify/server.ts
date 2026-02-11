@@ -33,14 +33,14 @@ server.setErrorHandler(errorHandler)
 server.register(fastifyMultipart)
 
 // Register upload endpoint
-const fileAdapter = new FileAdapter(UPLOAD_PATH);
+const fileAdapter = new FileAdapter(UPLOAD_PATH, server.log);
 server.register(upload, {
   fileAdapter
 })
 
 // Register embed endpoint
 const vectorStore = await createVectorStore();
-const embeddingsAdapter = new EmbeddingsAdapter(UPLOAD_PATH, vectorStore);
+const embeddingsAdapter = new EmbeddingsAdapter(UPLOAD_PATH, vectorStore, server.log);
 server.register(embed, {
   embeddingsAdapter
 })
