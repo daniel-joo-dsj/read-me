@@ -15,6 +15,8 @@ import { createVectorStore } from './initialize/vector-store.js'
 dotenv.config()
 
 // Environment Variables
+const HOST = process.env.HOST!
+const PORT = parseInt(process.env.PORT!)
 const UPLOAD_PATH = process.env.UPLOAD_PATH!
 
 
@@ -45,7 +47,7 @@ server.register(embed, {
   embeddingsAdapter
 })
 
-server.listen({ port: parseInt(process.env.PORT!), host: process.env.HOST!}, (err, address) => {
+server.listen({ port: PORT, host: HOST}, (err, address) => {
   if (err) {
     server.log.error(err)
     process.exit(1)
