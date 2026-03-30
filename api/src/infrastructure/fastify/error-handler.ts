@@ -1,5 +1,5 @@
 import type { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
-import { DomainError } from '@domain/errors/domain-error.js'
+import { ApplicationError } from '@application/errors/application-error.js'
 import { InfrastructureError } from '@infrastructure/errors/infrastructure-error.js'
 
 export function errorHandler(
@@ -7,7 +7,7 @@ export function errorHandler(
   _req: FastifyRequest,
   reply: FastifyReply
 ) {
-  if (error instanceof DomainError) {
+  if (error instanceof ApplicationError) {
     reply.status(400).send({
       error: error.code,
       message: error.userMessage,

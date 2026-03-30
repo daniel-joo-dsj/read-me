@@ -1,7 +1,7 @@
 import type { FastifyRequest } from 'fastify';
-import type { File } from '@domain/files/file.js'
+import type { File } from '@application/file/file.js'
 import { BadRequestError } from '@infrastructure/errors/bad-request-error.js';
-import { uploadFile } from '@application/upload-file.js';
+import { uploadFile } from '@application/file/upload.js';
 import type { Logger } from '@application/logger.js';
 
 
