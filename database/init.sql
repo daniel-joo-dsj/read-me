@@ -10,3 +10,15 @@ CREATE TABLE embeddings (
 CREATE INDEX ON embeddings
 USING ivfflat (embedding vector_cosine_ops)
 WITH (lists = 100);
+
+CREATE TABLE conversations (
+  id UUID PRIMARY KEY,
+  created_at TIMESTAMP
+);
+
+CREATE TABLE messages (
+  id UUID PRIMARY KEY,
+  conversation_id UUID REFERENCES conversations(id),
+  content TEXT,
+  created_at TIMESTAMP
+);
