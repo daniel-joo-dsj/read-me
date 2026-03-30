@@ -1,8 +1,8 @@
-import type { Logger } from './logger.js';
+import type { Logger } from '../logger.js';
 import * as fs from 'fs/promises';
-import type { File } from '@domain/files/file.js';
-import { FileUploadFailedError } from '@domain/errors/file-upload-failed-error.js';
-import { validateFile } from '@domain/files/validate-file.js';
+import type { File } from './file.js';
+import { FileUploadFailedError } from '../errors/file-upload-failed-error.js';
+import { validateFile } from './validate.js';
 
 
 export async function uploadFile(uploadPath: string, logger: Logger, file: File ) {

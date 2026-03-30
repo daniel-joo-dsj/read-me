@@ -1,6 +1,6 @@
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
 import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf';
-import type { Logger } from './logger.js';
+import type { Logger } from '../logger.js';
 import { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
 import { v4 as uuidv4 } from "uuid";
 
