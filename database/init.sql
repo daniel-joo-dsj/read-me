@@ -19,6 +19,7 @@ CREATE TABLE conversations (
 CREATE TABLE messages (
   id UUID PRIMARY KEY,
   conversation_id UUID REFERENCES conversations(id),
+  role TEXT CHECK (role IN ('user', 'agent')),
   content TEXT,
   created_at TIMESTAMP
 );
