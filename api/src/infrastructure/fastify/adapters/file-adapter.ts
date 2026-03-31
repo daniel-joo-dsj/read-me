@@ -13,7 +13,7 @@ export class FileAdapter {
         this.uploadPath = uploadPath;
         this.logger = logger;
     }
-    async #adaptFile(request: FastifyRequest) : Promise<File> {
+    async #adaptFile(request: FastifyRequest) : Promise<File> { // TODO: decouple logic from fastify request
         const file = await request.file();
         if (!file) {
             throw new BadRequestError()

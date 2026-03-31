@@ -13,6 +13,7 @@ import { EmbeddingsAdapter } from './adapters/embeddings-adapter.js'
 import { ConversationAdapter } from './adapters/conversation-adapter.js'
 import { createVectorStore } from './initialize/vector-store.js'
 import { Pool } from 'pg'
+import { createChatAgent } from '@application/agent/create.js'
 
 dotenv.config()
 
@@ -66,8 +67,10 @@ server.register(embed, {
 
 // Register converse endpoint
 const conversationAdapter = new ConversationAdapter(pool, server.log);
+const agent = await createChatAgent(vectorStore, server.log)
 server.register(converse, {
-  conversationAdapter
+  conversationAdapter,
+  agent
 })
 
 server.listen({ port: PORT, host: HOST}, (err, address) => {
