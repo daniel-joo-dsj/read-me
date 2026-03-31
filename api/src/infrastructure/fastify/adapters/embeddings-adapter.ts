@@ -30,7 +30,7 @@ export class EmbeddingsAdapter {
     }
 
     async #createTextSplitter() {
-        return new RecursiveCharacterTextSplitter({ chunkSize: 100, chunkOverlap: 0 })
+        return new RecursiveCharacterTextSplitter({ chunkSize: 1000, chunkOverlap: 150 })
     }
 
     async embed(filename: string) {
