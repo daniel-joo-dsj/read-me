@@ -5,8 +5,8 @@ import type { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyReques
 async function converse (fastify: FastifyInstance, options: FastifyPluginOptions) {
     const { conversationAdapter, agent } = options;
     fastify.post('/converse', async (request : FastifyRequest, reply: FastifyReply) => {
-        await conversationAdapter.createConversation();
-        return reply.status(201).send('Conversation created successfully.')
+        const conversationID = await conversationAdapter.createConversation();
+        return reply.status(201).send(`Conversation created successfully. ID: ${conversationID}`)
     })
 
     fastify.post('/converse/:conversation_id/messages', async (request : FastifyRequest<{Params: ConversationParams, Body: { message: string }}>, reply: FastifyReply) => {

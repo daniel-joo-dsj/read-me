@@ -14,6 +14,7 @@ import { ConversationAdapter } from './adapters/conversation-adapter.js'
 import { createVectorStore } from './initialize/vector-store.js'
 import { Pool } from 'pg'
 import { createChatAgent } from '@application/agent/create.js'
+import { ChatOpenAI } from "@langchain/openai";
 
 dotenv.config()
 
@@ -67,7 +68,8 @@ server.register(embed, {
 
 // Register converse endpoint
 const conversationAdapter = new ConversationAdapter(pool, server.log);
-const agent = await createChatAgent(vectorStore, server.log)
+const model = new ChatOpenAI({ model: "gpt-4o-mini" })
+const agent = await createChatAgent(model, vectorStore, server.log)
 server.register(converse, {
   conversationAdapter,
   agent

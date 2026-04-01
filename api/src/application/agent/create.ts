@@ -3,11 +3,11 @@ import { retrieve } from '@application/agent/tools/retrieve.js';
 import type { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
 import type { Logger } from "@application/logger.js";
 import { createAgent } from "langchain";
+import { ChatOpenAI } from "@langchain/openai";
 
-
-export async function createChatAgent(vectorStore: PGVectorStore, logger: Logger) {
+export async function createChatAgent(model: ChatOpenAI, vectorStore: PGVectorStore, logger: Logger) {
     // Agent tools
-    const retrieveTool = await retrieve(vectorStore, logger);
+    const retrieveTool = await retrieve(model, vectorStore, logger);
     const tools = [retrieveTool];
     logger.info(`Created tools. Number of tools: ${tools.length}`)
 
@@ -21,7 +21,7 @@ export async function createChatAgent(vectorStore: PGVectorStore, logger: Logger
     )
     logger.info(`Created system prompt.`)
 
-    const agent = createAgent({ model: "openai:gpt-4o-mini", tools, systemPrompt });
+    const agent = createAgent({ model: model, tools, systemPrompt });
     logger.info(`Agent successfully created.`)
 
     return agent
