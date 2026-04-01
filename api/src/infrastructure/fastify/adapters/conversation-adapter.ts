@@ -29,6 +29,7 @@ export class ConversationAdapter {
         try {
             await this.pool.query(query)
             this.logger.info(`Conversation inserted successfully. ID: ${conversation.id}`)
+            return conversation.id
         } catch (error) {
             throw new SQLInsertionError(query)
         }
